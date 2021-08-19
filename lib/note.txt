@@ -1,0 +1,143 @@
+The following part allows us to caught all type of errors and exit for each exceptions encountered. Then we will be able to display message error to the user's screen with the try/catch method.
+
+runZonedGuarded(() async {
+  ---
+  FlutterError.onError = (FlutterErrorDetails details) {
+    print(details.exception);
+  };
+  ---
+}, 
+(Object error, StackTrace stack) {
+  // Do something with caught errors 
+});
+
+---------------------------------
+
+Let's now explain the selectDate() method. This function allows us to change the deadline variable. We are calling showDatePicker() which displays a calendar. Then we can choose a date, and it is stored in the variable called pickedDate. Next, we check if a date has been picked and if it is different from the current value of the variable deadline. If the previous conditions is filled, we are able to change the state of the variable deadline. If the previous condition is not filled, then deadline stay at the current date.
+
+Future<void> selectDate(BuildContext context) async {
+    DateTime? pickedDate = await showDatePicker(
+      context: context,
+      initialDate: deadline,
+      firstDate: DateTime(2015),
+      lastDate: DateTime(2025),
+    );
+
+    if (pickedDate != null && pickedDate != deadline) {
+      setState(() {
+        deadline = pickedDate;
+      });
+    }
+}
+
+---------------------------------
+
+I just want to give some remarks about the condition we can find in the StreamBuilder.
+First of all, snap.connectionState stands for the state of connection to an asynchronous computation. Here, we say that if it is equal to 'waiting', it indicates that the asynchronous operation has begun, typically with the data being null. Therefore, we are returning a Loading.
+
+if (snap.connectionState == ConnectionState.waiting) {
+    return Text('Loading...');
+}
+
+If there is no data in AsyncSnapshot<List<Task>>, then We need to return that there is a query error. So if there is no data, puting the following condition allows us to exit the application, displays a text message and avoid the null checch operator message. 
+Note that this message should never be display to the user screen.
+
+if (!snap.hasData) {
+    return Text("Query error");
+}
+
+The following condition tells us that if there is no task in the List of Task, a message appears to the screen and say 'No .. list here yet!'.
+
+if (snap.data!.isEmpty) {
+    return Text("No .. here yet!");
+}
+
+---------------------------------
+
+Now let's talk about the slidablecontroller. This simply allows us to close the SlidableContainer once an action is done, i.e. it comes back to the initial position and hides the icons for instance.
+
+SlidableController slidableController = new SlidableController();
+
+Slidable(
+    controller: slidableController,
+    //
+    onPressed: () {
+        //
+        slidableController.activeState?.close();
+    }, 
+    //
+)
+
+---------------------------------
+
+ For the following we are going to use Expanded in order to use flex and therefore be able to seperate the task conatiner with a part containing task content and the check state.
+
+Expanded(
+    flex: 7,
+    child: //
+),
+Expanded(
+    flex: 3,
+    child: //
+)
+
+---------------------------------
+
+Concerning the group and list, we are using Expand with ListView.builder() in order to be able to display all the list, task, group by scrolling, and not be constraint by the screen height of the user.
+
+Expanded(
+    child: ListView.builder(
+        //
+    )
+)
+
+---------------------------------
+
+The following does not let the user scroll. In our case, we apply this to the task, otherwise, if we would try to scroll starting on a task, it would not work, since we are placed in a the tasks container and not outside.
+
+physics: NeverScrollableScrollPhysics()
+
+---------------------------------
+
+Concerning object Group, Liste, Task, I'm using .trim(), to delete all space around.
+
+---------------------------------
+
+Concerning the files query the db, and particularily when we retrieve data from db, I'm using stream to have a live action. However, just to have an equivalence with Future : 
+
+Future<List<Group>> getAllGroup() async {
+  List<Group> docList = [];
+  await FirebaseFirestore.collection('Group').get().then((QuerySnapshot querySnapshot) {
+    querySnapshot.docs.forEach((doc) {
+      Group group = new Group(doc.id, doc['title']);
+      docList.add(group);
+    });
+  });
+  return docList;
+}
+
+Note that using this method will not display new task added in live and will need a refresh.
+Btw, we should use, FutureBuilder and not StreamBuilder.
+
+---------------------------------
+
+Pass from Stream<T> to Future<T> :
+
+Furure<T> variableName = streamFunction().first;
+
+Pass from Future<T> to Stream<T> :
+
+Stream<T> variableName = futureFunction().asStream();
+
+---------------------------------
+
+Note that in Firestore Cloud, Datetime becomes Timestamp, so to pass from Timestamp to DateTime, we need to use the following to be able to deal with DateTime only :
+
+DateTime.fromMicrosecondsSinceEpoch(
+  e.get('deadline')
+  .microsecondsSinceEpoch
+)
+
+---------------------------------
+
+Note that to use severals querie in Firestore cloud, i.e. orderBy('field1', descending: bool).orderBy('field2', descending: bool), orderBy('field1', descending: bool).where('field2', isEqualTo: someting), we have to use indexes and set it directly in Firestore. It would avoid bunch of error with 'Null check operator bla bla bla'.
