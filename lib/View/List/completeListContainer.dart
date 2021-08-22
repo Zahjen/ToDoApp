@@ -6,7 +6,7 @@ import 'package:my_agenda/Models/Style/someStyle.dart';
 import 'package:my_agenda/Models/Widgets/deleteConfirmDialog.dart';
 import 'package:my_agenda/View/Task/completeSlidableTask.dart';
 
-class CompleteListContainer extends StatefulWidget {
+class CompleteListContainer extends StatelessWidget {
   final Group group;
   
   const CompleteListContainer({ 
@@ -15,14 +15,9 @@ class CompleteListContainer extends StatefulWidget {
   }) : super(key: key);
 
   @override
-  _CompleteListContainerState createState() => _CompleteListContainerState();
-}
-
-class _CompleteListContainerState extends State<CompleteListContainer> {
-  @override
   Widget build(BuildContext context) {
     return StreamBuilder<List<Liste>>(
-      stream: NoSqlList().getAllByGroup(widget.group),
+      stream: NoSqlList().getAllByGroup(group),
       builder: (context, snap) {
         if (snap.connectionState == ConnectionState.waiting) {
           return Text('Loading...');
@@ -86,4 +81,3 @@ class _CompleteListContainerState extends State<CompleteListContainer> {
     );
   }
 }
-
