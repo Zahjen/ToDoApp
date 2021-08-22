@@ -57,6 +57,8 @@ class _DialogGroupListState extends State<DialogGroupList> {
   Widget groupTitle() {
     return TextFormField(
       controller: widget.input,
+      autofocus: true,
+      textCapitalization: TextCapitalization.sentences,
       style: controlerStyle
     );
   }
