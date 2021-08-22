@@ -1,11 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:my_agenda/Models/Style/someStyle.dart';
 
 class StructurePage extends StatelessWidget {
   final List<Widget> children;
   
   const StructurePage({ 
     Key? key,
-    required this.children
+    required this.children,
   }) : super(key: key);
 
   @override
@@ -13,7 +14,7 @@ class StructurePage extends StatelessWidget {
     return Scaffold(
       body: SafeArea(
         child: Container(
-          padding: EdgeInsets.all(20.0),
+          padding: paddingContainer,
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: children,
