@@ -15,7 +15,7 @@ class TaskContainer extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: EdgeInsets.all(15.0),
+      padding: paddingContainerCard,
       decoration: containerBox,
       child:Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
