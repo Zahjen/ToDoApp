@@ -1,6 +1,7 @@
 import 'package:my_agenda/Models/Utils/exception.dart';
 
 class Task {
+  // Variables declaration
   late String _id;
   late String _title;
   late String _description;
@@ -8,6 +9,7 @@ class Task {
   late bool _state;
   late String _idList;
 
+  // Constructor
   Task(String id, String title, String description, DateTime deadline, bool state, String idList) {
     this.setId(id);
     this.setTitle(title);
@@ -17,6 +19,7 @@ class Task {
     this.setIdList(idList);
   }
 
+  // Getters and setters
   String getId() {
     return _id.trim();
   }
