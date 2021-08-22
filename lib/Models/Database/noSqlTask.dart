@@ -23,14 +23,40 @@ class NoSqlTask {
       });
   }
 
-  Stream<List<Task>> getAll(Liste list) { 
+  Stream<List<Task>> getAllFalse(Liste list) { 
     return groupCollection
       .doc(list.getIdGroup())
       .collection('List')
       .doc(list.getId())
       .collection('Task')
-      .orderBy('state', descending: false)
       .orderBy('deadline', descending: false)
+      .where('state', isEqualTo: false)
+      .snapshots()
+      .map((QuerySnapshot snapshot) {
+        return snapshot.docs.map((e) {
+          return Task(
+            e.id, 
+            e.get('title'), 
+            e.get('description'), 
+            DateTime.fromMicrosecondsSinceEpoch(
+              e.get('deadline')
+              .microsecondsSinceEpoch
+            ),
+            e.get('state'), 
+            list.getId(),
+          );
+        }).toList();
+      });
+  }
+
+  Stream<List<Task>> getAllTrue(Liste list) { 
+    return groupCollection
+      .doc(list.getIdGroup())
+      .collection('List')
+      .doc(list.getId())
+      .collection('Task')
+      .orderBy('deadline', descending: false)
+      .where('state', isEqualTo: true)
       .snapshots()
       .map((QuerySnapshot snapshot) {
         return snapshot.docs.map((e) {
