@@ -141,3 +141,9 @@ DateTime.fromMicrosecondsSinceEpoch(
 ---------------------------------
 
 Note that to use severals querie in Firestore cloud, i.e. orderBy('field1', descending: bool).orderBy('field2', descending: bool), orderBy('field1', descending: bool).where('field2', isEqualTo: someting), we have to use indexes and set it directly in Firestore. It would avoid bunch of error with 'Null check operator bla bla bla'.
+
+---------------------------------
+
+Concerning delete function in the NoSqlList file, in first place i'm using something called batch, and used for performing multiple writes as a single atomic operation. Basically, we need to notice that when we delete a document in Firestore, the content of this document is not deleted. For instance, for a 'Liste' that constains some tasks, we first need to delete all these tasks (so all the documents and their datas), then, once all the task documents are deleted, it will automatically delete the collection 'Tasks'. When this action is over, we are able to delete the corresponding 'Liste' document. Therefore, using batch will make all these actions instantaneous. 
+
+Let's just precise that we could use a for loop, nevertheless, each task will be deleted one by one, and therefore, we only need to have a few dozen tasks to make the removal process really long.
