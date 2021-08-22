@@ -1,16 +1,19 @@
 import 'package:my_agenda/Models/Utils/exception.dart';
 
 class Liste {
+  // Variables declaration
   late String _id;
   late String _title;
   late String _idGroup;
 
+  // Constructor
   Liste(String id, String title, String idGroup) {
     this.setId(id);
     this.setTitle(title);
     this.setIdGroup(idGroup);
   }
 
+  // Getters and Setters
   String getId() {
     return _id.trim();
   }
