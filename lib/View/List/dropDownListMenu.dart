@@ -37,9 +37,8 @@ class DropDownListMenu extends StatelessWidget {
         await showDialog(
           context: context, 
           builder: (BuildContext context) {
-            initializeEditList(list);
             return DeleteConfirmationDialog(
-              objectType: 'list', 
+              deleteThing: 'the whole list and its content', 
               deleteConfirmation: () {
                 NoSqlList().delete(list);
                 Navigator.pop(context);
