@@ -14,7 +14,7 @@ class NoSqlGroup {
     });
   }
 
-  // Get a list of all group from Firestore
+  // Get a list of all group from db
   Stream<List<Group>> getAll() {
     return groupCollection
       .orderBy('title', descending: false)
@@ -26,7 +26,7 @@ class NoSqlGroup {
       });
   }
 
-  // Here we get a group thanks to its id
+  // Get a group thanks to its id
   Future<Group> getById(String idGroup) async {
     var groupDoc = await groupCollection
         .doc(idGroup)
@@ -35,6 +35,7 @@ class NoSqlGroup {
     return group;
   }
 
+  // Delete the selected group, list and the Task either in the db or in the screen
   Future<void> delete(Group group) async {
     List<Liste> lists = await NoSqlList().getAllByGroup(group).first;
 
@@ -45,6 +46,7 @@ class NoSqlGroup {
     return groupCollection.doc(group.getId()).delete();
   }
   
+  // Update title of a group
   Future<void> update(Group group) async {
     return await groupCollection
       .doc(group.getId())
