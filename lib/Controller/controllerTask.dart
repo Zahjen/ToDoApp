@@ -13,7 +13,7 @@ DateTime deadline = DateTime.now();
 SlidableController slidableController = new SlidableController();
 
 void setDataTask(BuildContext context, Liste list) {
-  Task task = Task(
+  Task task = new Task(
     '1', 
     inputTaskTitle.text, 
     inputTaskDescription.text, 
@@ -27,7 +27,7 @@ void setDataTask(BuildContext context, Liste list) {
 }
 
 void editDataTask(BuildContext context, Task taskParam) { 
-  Task task = Task(
+  Task task = new Task(
     taskParam.getId(), 
     inputTaskTitle.text, 
     inputTaskDescription.text, 
@@ -40,14 +40,14 @@ void editDataTask(BuildContext context, Task taskParam) {
   Navigator.pop(context);
 }
 
+void initializeAddTask() {
+  inputTaskTitle.text = "";
+  inputTaskDescription.text = "";
+  deadline = DateTime.now();
+}
+
 void initializeEditTask(Task task) {
   inputTaskTitle.text = task.getTitle();
   inputTaskDescription.text = task.getDescription();
   deadline = task.getDeadline();
-}
-
-void initializeAddTask() {
-  inputTaskTitle.clear();
-  inputTaskDescription.clear();
-  deadline = DateTime.now();
 }
