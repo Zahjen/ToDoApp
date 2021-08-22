@@ -97,6 +97,8 @@ class _DialogTaskState extends State<DialogTask> {
     return TextFormField(
       controller: taskController,
       style: controlerStyle,
+      autofocus: true,
+      textCapitalization: TextCapitalization.sentences,
       minLines: 1,
       maxLines: 3,
     );
