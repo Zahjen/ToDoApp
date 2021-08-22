@@ -2,12 +2,12 @@ import 'package:flutter/material.dart';
 import 'package:my_agenda/Models/Style/someStyle.dart';
 
 class DeleteConfirmationDialog extends StatelessWidget {
-  final String objectType;
+  final String deleteThing;
   final void Function()? deleteConfirmation;
 
   const DeleteConfirmationDialog({ 
     Key? key,
-    required this.objectType,
+    required this.deleteThing,
     required this.deleteConfirmation
   }) : super(key: key);
 
@@ -20,7 +20,7 @@ class DeleteConfirmationDialog extends StatelessWidget {
         mainAxisSize: MainAxisSize.min,
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Text('Do you want to delete this $objectType ?'),
+          Text('Do you want to delete $deleteThing ?'),
           SizedBox(
             height: 10.0,
           ),
