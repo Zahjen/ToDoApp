@@ -49,7 +49,7 @@ class SlidableGroup extends StatelessWidget {
                 }, 
                 builderDelete: (BuildContext context) {
                   return DeleteConfirmationDialog(
-                    objectType: 'group', 
+                    deleteThing: 'this group and its content', 
                     deleteConfirmation: () {
                       NoSqlGroup().delete(group);
                       Navigator.pop(context);
