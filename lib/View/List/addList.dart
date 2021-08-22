@@ -22,7 +22,11 @@ class AddList extends StatelessWidget {
           onPressed: () {
             Navigator.push(
               context,
-              MaterialPageRoute(builder: (context) => Home()),
+              MaterialPageRoute(
+                builder: (context) {
+                  return Home();
+                }
+              ),
             );
           }, 
           icon: Icon(
