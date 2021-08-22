@@ -45,4 +45,14 @@ ThemeData themeGeneral = ThemeData(
       )
     )
   ),
+  bottomNavigationBarTheme: BottomNavigationBarThemeData(
+    backgroundColor: Palette.colorApp[700],
+    unselectedItemColor: Palette.colorApp[100],
+    selectedIconTheme: IconThemeData(
+      size: 33,
+      color: Palette.colorApp
+    ),
+    showUnselectedLabels: false,
+    showSelectedLabels: false,
+  )
 );
