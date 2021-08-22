@@ -4,6 +4,7 @@ import 'package:my_agenda/Models/Pojo/group.dart';
 import 'package:my_agenda/Models/Pojo/list.dart';
 
 TextEditingController inputListTitle = new TextEditingController();
+int selectedIndex = 0;
 
 void setDataList(BuildContext context, Group group) {
   Liste list = new Liste(
@@ -17,7 +18,7 @@ void setDataList(BuildContext context, Group group) {
 }
 
 void editDataList(BuildContext context, Liste listParam) {
-  Liste list = Liste(
+  Liste list = new Liste(
     listParam.getId(), 
     inputListTitle.text,
     listParam.getIdGroup()
@@ -27,10 +28,10 @@ void editDataList(BuildContext context, Liste listParam) {
   Navigator.pop(context);
 }
 
-void initializeEditList(Liste list) {
-  inputListTitle.text = list.getTitle();
+void initializeAddList() {
+  inputListTitle.text = "";
 }
 
-void initializeAddList() {
-  inputListTitle.clear();
+void initializeEditList(Liste list) {
+  inputListTitle.text = list.getTitle();
 }
