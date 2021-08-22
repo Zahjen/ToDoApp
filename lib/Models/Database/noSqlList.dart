@@ -7,6 +7,7 @@ class NoSqlList {
 
   CollectionReference groupCollection = FirebaseFirestore.instance.collection('Group');
   
+  // Create a new List
   Future<dynamic> insert(Liste list) async {
     return await groupCollection
       .doc(list.getIdGroup())
@@ -16,6 +17,7 @@ class NoSqlList {
       });
   }
 
+  // Get a List of Liste according to the group they belong
   Stream<List<Liste>> getAllByGroup(Group group) {
     return groupCollection
       .doc(group.getId())
@@ -34,7 +36,7 @@ class NoSqlList {
   }
 
 
-  // This allows us to delete the selected list and the Task either in the db or in the screen
+  // Delete the selected list and the Task either in the db or in the screen
   Future<void> delete(Liste list) {
     WriteBatch batch = FirebaseFirestore.instance.batch();
 
@@ -59,6 +61,27 @@ class NoSqlList {
       });
   }
 
+  // Delete every completed task of a selected list
+  Future<void> deleteAllCompleteTask(Liste list) {
+    WriteBatch batch = FirebaseFirestore.instance.batch();
+
+    return groupCollection
+      .doc(list.getIdGroup())
+      .collection('List')
+      .doc(list.getId())
+      .collection('Task')
+      .where('state', isEqualTo: true)
+      .get().then((QuerySnapshot<Map<String, dynamic>> querySnapshot) {
+        querySnapshot
+          .docs
+          .forEach((QueryDocumentSnapshot<Map<String, dynamic>> document) {
+            batch.delete(document.reference);
+          });
+        return batch.commit();
+      });
+  }
+
+  // Update the title of a list
   Future<void> update(Liste list) async {
     return await groupCollection
       .doc(list.getIdGroup())
@@ -69,6 +92,7 @@ class NoSqlList {
       });
   }
 
+  // Get a specific list thanks to its id 
   Future<Liste> getById(String idList) async {
     final groups = await NoSqlGroup().getAll().first;
     Liste listMatch = new Liste("-1", "error", "-1");
@@ -82,7 +106,7 @@ class NoSqlList {
       }
     }
     if (listMatch.getId() == '-1') {
-      throw new Exception("This id match any lists");
+      throw new Exception("This id matches any list");
     }
 
     return listMatch;
