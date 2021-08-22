@@ -18,7 +18,7 @@ void setDataGroup(BuildContext context) {
 }
 
 void editDataGroup(BuildContext context, Group groupParam) {
-  Group group = Group(
+  Group group = new Group(
     groupParam.getId(), 
     inputGroupTitle.text
   );
@@ -27,11 +27,12 @@ void editDataGroup(BuildContext context, Group groupParam) {
   Navigator.pop(context);
 }
 
+void initializeAddGroup() {
+  inputGroupTitle.text = "";
+}
+
 void initializeEditGroup(Group group) {
   inputGroupTitle.text = group.getTitle();
 }
 
-void initializeAddGroup() {
-  inputGroupTitle.clear();
-}
 
