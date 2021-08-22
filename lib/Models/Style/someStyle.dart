@@ -3,7 +3,7 @@ import 'package:my_agenda/Models/Style/color.dart';
 
 BoxDecoration containerBox = new BoxDecoration(
   borderRadius: BorderRadius.all(Radius.circular(10.0)),
-  color: Palette.colorApp[200]
+  color: Palette.colorApp[200],
 );
 
 TextStyle taskDescriptionStyle = new TextStyle(
@@ -34,3 +34,5 @@ TextStyle listTitleStyle = new TextStyle(
 );
 
 EdgeInsetsGeometry paddingAlertDialog = new EdgeInsets.fromLTRB(25, 25, 25, 7);
+EdgeInsetsGeometry paddingContainerCard = new EdgeInsets.all(15.0);
+EdgeInsetsGeometry paddingContainer = new EdgeInsets.fromLTRB(20, 20, 20, 0);
