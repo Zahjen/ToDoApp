@@ -1,4 +1,4 @@
-import 'package:my_agenda/Models/Utils/exception.dart';
+import '../../Models/Utils/exception.dart';
 
 class Task {
   // Variables declaration
@@ -10,7 +10,8 @@ class Task {
   late String _idList;
 
   // Constructor
-  Task(String id, String title, String description, DateTime deadline, bool state, String idList) {
+  Task(String id, String title, String description, DateTime deadline,
+      bool state, String idList) {
     this.setId(id);
     this.setTitle(title);
     this.setDescription(description);
@@ -23,12 +24,12 @@ class Task {
   String getId() {
     return _id.trim();
   }
+
   void setId(String id) {
     String idTrim = id.trim();
     if (idTrim == "") {
       throw new PersonalizedException().taskId();
-    }
-    else {
+    } else {
       this._id = idTrim;
     }
   }
@@ -36,12 +37,12 @@ class Task {
   String getTitle() {
     return _title.trim();
   }
+
   void setTitle(String title) {
     String titleTrim = title.trim();
     if (titleTrim == "") {
       throw new PersonalizedException().taskTitle();
-    }
-    else {
+    } else {
       this._title = titleTrim;
     }
   }
@@ -49,39 +50,37 @@ class Task {
   String getDescription() {
     return _description.trim();
   }
+
   void setDescription(String description) {
     String descriptionTrim = description.trim();
-    if (descriptionTrim == "") {
-      throw new PersonalizedException().taskDescripion();
-    }
-    else {
-      this._description = descriptionTrim;
-    }
+    this._description = descriptionTrim;
   }
 
   DateTime getDeadline() {
     return _deadline;
   }
+
   void setDeadline(DateTime deadline) {
-      this._deadline = deadline;
+    this._deadline = deadline;
   }
 
   bool getState() {
     return _state;
   }
+
   void setState(bool state) {
-      this._state = state;
+    this._state = state;
   }
 
   String getIdList() {
     return _idList.trim();
   }
+
   void setIdList(String idList) {
     String idListTrim = idList.trim();
     if (idListTrim == "") {
       throw new PersonalizedException().listId();
-    }
-    else {
+    } else {
       this._idList = idListTrim;
     }
   }
