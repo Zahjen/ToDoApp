@@ -1,22 +1,27 @@
 import 'package:flutter/material.dart';
-import 'package:my_agenda/Models/Database/noSqlList.dart';
-import 'package:my_agenda/Models/Pojo/group.dart';
-import 'package:my_agenda/Models/Pojo/list.dart';
-import 'package:my_agenda/Models/Style/someStyle.dart';
-import 'package:my_agenda/View/Task/todaySlidableTask.dart';
+import '../../Models/Database/noSqlList.dart';
+import '../../Models/Pojo/group.dart';
+import '../../Models/Pojo/list.dart';
+import '../../Models/Style/someStyle.dart';
+import '../../View/Task/todaySlidableTask.dart';
 
-class TodayList extends StatelessWidget {
+class TodayList extends StatefulWidget {
   final Group group;
-  
-  const TodayList({ 
-    Key? key,
-    required this.group
-  }) : super(key: key);
+
+  const TodayList({Key? key, required this.group}) : super(key: key);
 
   @override
+  State<TodayList> createState() => _TodayListState();
+}
+
+class _TodayListState extends State<TodayList>
+    with AutomaticKeepAliveClientMixin {
+  @override
   Widget build(BuildContext context) {
+    super.build(context);
+
     return StreamBuilder<List<Liste>>(
-      stream: NoSqlList().getAllByGroup(group),
+      stream: NoSqlList().getAllByGroup(widget.group),
       builder: (context, snap) {
         if (snap.connectionState == ConnectionState.waiting) {
           return Text('Loading...');
@@ -28,7 +33,7 @@ class TodayList extends StatelessWidget {
           return Text("No list here yet!");
         }
 
-        return Expanded( 
+        return Expanded(
           child: ListView.builder(
             shrinkWrap: true,
             itemCount: snap.data?.length,
@@ -55,5 +60,7 @@ class TodayList extends StatelessWidget {
       }
     );
   }
-}
 
+  @override
+  bool get wantKeepAlive => true;
+}
