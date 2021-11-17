@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:my_agenda/Controller/controllerList.dart';
-import 'package:my_agenda/Models/Database/noSqlList.dart';
-import 'package:my_agenda/Models/Pojo/list.dart';
-import 'package:my_agenda/Models/Widgets/deleteConfirmDialog.dart';
-import 'package:my_agenda/Models/Widgets/dialogGroupList.dart';
+import '../../Controller/controllerList.dart';
+import '../../Models/Database/noSqlList.dart';
+import '../../Models/Pojo/list.dart';
+import '../../Models/Widgets/deleteConfirmDialog.dart';
+import '../../Models/Widgets/dialogGroupList.dart';
 
 class DropDownListMenu extends StatelessWidget {
   final Liste list;
@@ -75,4 +75,3 @@ class DropDownListMenu extends StatelessWidget {
     );
   }
 }
-
