@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:my_agenda/Controller/controllerList.dart';
-import 'package:my_agenda/Models/Pojo/group.dart';
-import 'package:my_agenda/Models/Style/someStyle.dart';
-import 'package:my_agenda/Models/Widgets/dialogGroupList.dart';
-import 'package:my_agenda/View/General/home.dart';
+import '../../Controller/controllerList.dart';
+import '../../Models/Pojo/group.dart';
+import '../../Models/Style/someStyle.dart';
+import '../../Models/Widgets/dialogGroupList.dart';
+import '../../View/General/home.dart';
 
 class AddList extends StatelessWidget {
   final Group group;
