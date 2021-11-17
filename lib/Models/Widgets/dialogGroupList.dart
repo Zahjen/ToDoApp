@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:my_agenda/Models/Style/someStyle.dart';
+import '../../Models/Style/someStyle.dart';
 
 class DialogGroupList extends StatefulWidget {
   final String title;
