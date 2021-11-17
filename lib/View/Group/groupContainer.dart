@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:my_agenda/Models/Pojo/group.dart';
-import 'package:my_agenda/Models/Style/someStyle.dart';
-import 'package:my_agenda/View/General/listBody.dart';
+import '../../Models/Pojo/group.dart';
+import '../../Models/Style/someStyle.dart';
+import '../../View/General/listBody.dart';
 
 class GroupContainer extends StatelessWidget {
   final Group group;
