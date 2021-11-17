@@ -1,5 +1,5 @@
 import 'package:flutter/cupertino.dart';
-import 'package:my_agenda/Models/Style/color.dart';
+import '../../Models/Style/color.dart';
 
 BoxDecoration containerBox = new BoxDecoration(
   borderRadius: BorderRadius.all(Radius.circular(10.0)),
