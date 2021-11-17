@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:my_agenda/Models/Pojo/group.dart';
-import 'package:my_agenda/Models/Style/someStyle.dart';
-import 'package:my_agenda/View/List/addList.dart';
-import 'package:my_agenda/View/List/completeListContainer.dart';
-import 'package:my_agenda/View/List/todayList.dart';
-import 'package:my_agenda/View/List/uncompleteListContainer.dart';
+import '../../Models/Pojo/group.dart';
+import '../../Models/Style/someStyle.dart';
+import '../../View/List/addList.dart';
+import '../../View/List/completeListContainer.dart';
+import '../../View/List/todayList.dart';
+import '../../View/List/uncompleteListContainer.dart';
 
 class ListBodyPart extends StatefulWidget {
   final Group group;
