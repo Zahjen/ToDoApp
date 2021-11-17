@@ -1,18 +1,15 @@
 import 'package:flutter/material.dart';
-import 'package:my_agenda/Controller/controllerTask.dart';
-import 'package:my_agenda/Models/Style/someStyle.dart';
-import 'package:my_agenda/Models/Utils/exception.dart';
-import 'package:my_agenda/Models/Utils/utils.dart';
+import '../../Controller/controllerTask.dart';
+import '../../Models/Style/someStyle.dart';
+import '../../Models/Utils/exception.dart';
+import '../../Models/Utils/utils.dart';
 
 class DialogTask extends StatefulWidget {
   final String actionToDo;
   final VoidCallback setData;
 
-  const DialogTask({ 
-    Key? key, 
-    required this.actionToDo,
-    required this.setData
-  }) : super(key: key);
+  const DialogTask({Key? key, required this.actionToDo, required this.setData})
+      : super(key: key);
 
   @override
   _DialogTaskState createState() => _DialogTaskState();
@@ -73,10 +70,7 @@ class _DialogTaskState extends State<DialogTask> {
           datePicker(context),
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceAround,
-            children: [
-              cancelButton(context),
-              addEditButton(context)
-            ],
+            children: [cancelButton(context), addEditButton(context)],
           )
         ],
       ),
@@ -112,10 +106,8 @@ class _DialogTaskState extends State<DialogTask> {
         IconButton(
           onPressed: () {
             selectDate(context);
-          }, 
-          icon: Icon(
-            Icons.edit
-          ),
+          },
+          icon: Icon(Icons.edit),
         )
       ],
     );
@@ -123,11 +115,10 @@ class _DialogTaskState extends State<DialogTask> {
 
   Widget cancelButton(BuildContext context) {
     return TextButton(
-      onPressed: () {
-        Navigator.pop(context);
-      }, 
-      child: Text('Cancel')
-    );
+        onPressed: () {
+          Navigator.pop(context);
+        },
+        child: Text('Cancel'));
   }
 
   Widget addEditButton(BuildContext context) {
@@ -138,18 +129,14 @@ class _DialogTaskState extends State<DialogTask> {
           errorHandleDescription = '';
           try {
             widget.setData();
-          }
-          catch(error) {
+          } catch (error) {
             setState(() {
               if (error.toString() == PersonalizedException().taskTitle()) {
                 errorHandleTitle = error.toString();
               }
-              else if (error.toString() == PersonalizedException().taskDescripion()) {
-                errorHandleDescription = error.toString();
-              }
-            }); 
+            });
           }
-        }, 
+        },
         child: Text('${widget.actionToDo}')
       )
     );
