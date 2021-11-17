@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:my_agenda/Models/Style/color.dart';
+import '../../Models/Style/color.dart';
 
 ThemeData themeGeneral = ThemeData(
   primarySwatch: Palette.colorApp, // General Color for the theme
