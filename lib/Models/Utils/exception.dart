@@ -1,5 +1,4 @@
 class PersonalizedException implements Exception {
-
   String groupTitle() {
     return "The title of the group should not be empty";
   }
@@ -20,12 +19,7 @@ class PersonalizedException implements Exception {
     return "The title of the task should not be empty";
   }
 
-  String taskDescripion() {
-    return "The description of the task should not be empty";
-  }
-
   String taskId() {
     return "The id of the task should not be empty";
   }
-
 }
