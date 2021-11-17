@@ -1,25 +1,32 @@
 import 'package:flutter/material.dart';
-import 'package:my_agenda/Controller/controllerTask.dart';
-import 'package:my_agenda/Models/Database/noSqlList.dart';
-import 'package:my_agenda/Models/Pojo/group.dart';
-import 'package:my_agenda/Models/Pojo/list.dart';
-import 'package:my_agenda/Models/Style/someStyle.dart';
-import 'package:my_agenda/Models/Widgets/dialogTask.dart';
-import 'package:my_agenda/View/List/dropDownListMenu.dart';
-import 'package:my_agenda/View/Task/uncompleteSlidableTask.dart';
+import '../../Controller/controllerTask.dart';
+import '../../Models/Database/noSqlList.dart';
+import '../../Models/Pojo/group.dart';
+import '../../Models/Pojo/list.dart';
+import '../../Models/Style/someStyle.dart';
+import '../../Models/Widgets/dialogTask.dart';
+import '../../View/List/dropDownListMenu.dart';
+import '../../View/Task/uncompleteSlidableTask.dart';
 
-class UncompleteListContainer extends StatelessWidget {
+class UncompleteListContainer extends StatefulWidget {
   final Group group;
-  
-  const UncompleteListContainer({ 
-    Key? key,
-    required this.group
-  }) : super(key: key);
+
+  const UncompleteListContainer({Key? key, required this.group})
+      : super(key: key);
 
   @override
+  State<UncompleteListContainer> createState() =>
+      _UncompleteListContainerState();
+}
+
+class _UncompleteListContainerState extends State<UncompleteListContainer>
+    with AutomaticKeepAliveClientMixin {
+  @override
   Widget build(BuildContext context) {
+    super.build(context);
+
     return StreamBuilder<List<Liste>>(
-      stream: NoSqlList().getAllByGroup(group),
+      stream: NoSqlList().getAllByGroup(widget.group),
       builder: (context, snap) {
         if (snap.connectionState == ConnectionState.waiting) {
           return Text('Loading...');
@@ -31,7 +38,7 @@ class UncompleteListContainer extends StatelessWidget {
           return Text("No list here yet!");
         }
 
-        return Expanded( 
+        return Expanded(
           child: ListView.builder(
             shrinkWrap: true,
             itemCount: snap.data?.length,
@@ -52,16 +59,14 @@ class UncompleteListContainer extends StatelessWidget {
                       Row(
                         children: [
                           IconButton(
-                            icon: Icon(
-                              Icons.add
-                            ),
+                            icon: Icon(Icons.add),
                             onPressed: () {
                               initializeAddTask();
                               showDialog(
-                                context: context, 
+                                context: context,
                                 builder: (BuildContext context) {
                                   return DialogTask(
-                                    actionToDo: 'Add', 
+                                    actionToDo: 'Add',
                                     setData: () {
                                       setDataTask(context, list);
                                     }
@@ -87,4 +92,7 @@ class UncompleteListContainer extends StatelessWidget {
       }
     );
   }
+
+  @override
+  bool get wantKeepAlive => true;
 }
