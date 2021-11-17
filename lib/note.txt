@@ -147,3 +147,33 @@ Note that to use severals querie in Firestore cloud, i.e. orderBy('field1', desc
 Concerning delete function in the NoSqlList file, in first place i'm using something called batch, and used for performing multiple writes as a single atomic operation. Basically, we need to notice that when we delete a document in Firestore, the content of this document is not deleted. For instance, for a 'Liste' that constains some tasks, we first need to delete all these tasks (so all the documents and their datas), then, once all the task documents are deleted, it will automatically delete the collection 'Tasks'. When this action is over, we are able to delete the corresponding 'Liste' document. Therefore, using batch will make all these actions instantaneous. 
 
 Let's just precise that we could use a for loop, nevertheless, each task will be deleted one by one, and therefore, we only need to have a few dozen tasks to make the removal process really long.
+
+---------------------------------
+
+Let's speak about a small problem concerning long lists containing lists, tasks and groups. When scrolling down everything is ok, but when scrolling up, we can constate a shift is operated. The lists directly goes from bottom to top, like everything in between was ignored. In order to avoid this problem, we firstly need to change the widget from Stateless to Stateful widget, and extend it with AutomaticKeepAliveClientMixin(). Finally, we have to add one more override at the end :
+  @override
+  bool get wantKeepAlive => true;
+  
+To have an idea of the stucture, we should do something like that :
+
+class MyCustomWidget extends StatefulWidget {
+  const MyCustomWidget({Key? key}) : super(key: key);
+
+  @override
+  State<MyCustomWidget> createState() => _MyCustomWidgetState();
+}
+
+class _MyCustomWidgetState extends State<CompleteSlidableTask> with AutomaticKeepAliveClientMixin {
+  @override
+  Widget build(BuildContext context) {
+  
+    super.build(context);
+
+    return SomeWidget();
+    
+  }
+
+  @override
+  bool get wantKeepAlive => true;
+}
+
