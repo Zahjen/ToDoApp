@@ -1,7 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:my_agenda/Models/Database/noSqlGroup.dart';
-import 'package:my_agenda/Models/Pojo/group.dart';
-import 'package:my_agenda/Models/Pojo/list.dart';
+import '../../Models/Database/noSqlGroup.dart';
+import '../../Models/Pojo/group.dart';
+import '../../Models/Pojo/list.dart';
 
 class NoSqlList {
 
