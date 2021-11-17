@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:my_agenda/Controller/controllerGroup.dart';
-import 'package:my_agenda/Models/Database/noSqlGroup.dart';
-import 'package:my_agenda/Models/Pojo/group.dart';
-import 'package:my_agenda/Models/Widgets/deleteConfirmDialog.dart';
-import 'package:my_agenda/Models/Widgets/dialogGroupList.dart';
-import 'package:my_agenda/Models/Widgets/slidableContainer.dart';
-import 'package:my_agenda/View/Group/groupContainer.dart';
+import '../../Controller/controllerGroup.dart';
+import '../../Models/Database/noSqlGroup.dart';
+import '../../Models/Pojo/group.dart';
+import '../../Models/Widgets/deleteConfirmDialog.dart';
+import '../../Models/Widgets/dialogGroupList.dart';
+import '../../Models/Widgets/slidableContainer.dart';
+import '../../View/Group/groupContainer.dart';
 
 class SlidableGroup extends StatelessWidget {
   const SlidableGroup({ Key? key }) : super(key: key);
