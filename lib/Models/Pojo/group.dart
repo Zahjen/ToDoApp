@@ -1,4 +1,4 @@
-import 'package:my_agenda/Models/Utils/exception.dart';
+import '../../Models/Utils/exception.dart';
 
 class Group {
   // Variables déclaration
