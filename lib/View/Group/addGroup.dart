@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:my_agenda/Controller/controllerGroup.dart';
-import 'package:my_agenda/Models/Style/someStyle.dart';
-import 'package:my_agenda/Models/Utils/utils.dart';
-import 'package:my_agenda/Models/Widgets/dialogGroupList.dart';
+import '../../Controller/controllerGroup.dart';
+import '../../Models/Style/someStyle.dart';
+import '../../Models/Utils/utils.dart';
+import '../../Models/Widgets/dialogGroupList.dart';
 
 class AddGroup extends StatelessWidget {
   const AddGroup({ Key? key }) : super(key: key);
@@ -43,4 +43,3 @@ class AddGroup extends StatelessWidget {
     );
   }
 }
-
