@@ -1,7 +1,7 @@
 import 'package:flutter/cupertino.dart';
-import 'package:my_agenda/Models/Database/noSqlList.dart';
-import 'package:my_agenda/Models/Pojo/group.dart';
-import 'package:my_agenda/Models/Pojo/list.dart';
+import '../Models/Database/noSqlList.dart';
+import '../Models/Pojo/group.dart';
+import '../Models/Pojo/list.dart';
 
 TextEditingController inputListTitle = new TextEditingController();
 int selectedIndex = 0;
