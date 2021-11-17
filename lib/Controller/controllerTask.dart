@@ -1,9 +1,9 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_slidable/flutter_slidable.dart';
-import 'package:my_agenda/Models/Database/noSqlTask.dart';
-import 'package:my_agenda/Models/Pojo/list.dart';
-import 'package:my_agenda/Models/Pojo/task.dart';
+import '../Models/Database/noSqlTask.dart';
+import '../Models/Pojo/list.dart';
+import '../Models/Pojo/task.dart';
 
 TextEditingController inputTaskTitle = new TextEditingController();
 TextEditingController inputTaskDescription = new TextEditingController();
