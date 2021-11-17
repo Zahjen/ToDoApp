@@ -1,23 +1,29 @@
 import 'package:flutter/material.dart';
-import 'package:my_agenda/Models/Database/noSqlList.dart';
-import 'package:my_agenda/Models/Pojo/group.dart';
-import 'package:my_agenda/Models/Pojo/list.dart';
-import 'package:my_agenda/Models/Style/someStyle.dart';
-import 'package:my_agenda/Models/Widgets/deleteConfirmDialog.dart';
-import 'package:my_agenda/View/Task/completeSlidableTask.dart';
+import '../../Models/Database/noSqlList.dart';
+import '../../Models/Pojo/group.dart';
+import '../../Models/Pojo/list.dart';
+import '../../Models/Style/someStyle.dart';
+import '../../Models/Widgets/deleteConfirmDialog.dart';
+import '../../View/Task/completeSlidableTask.dart';
 
-class CompleteListContainer extends StatelessWidget {
+class CompleteListContainer extends StatefulWidget {
   final Group group;
-  
-  const CompleteListContainer({ 
-    Key? key,
-    required this.group
-  }) : super(key: key);
+
+  const CompleteListContainer({Key? key, required this.group})
+      : super(key: key);
 
   @override
+  State<CompleteListContainer> createState() => _CompleteListContainerState();
+}
+
+class _CompleteListContainerState extends State<CompleteListContainer>
+    with AutomaticKeepAliveClientMixin {
+  @override
   Widget build(BuildContext context) {
+    super.build(context);
+
     return StreamBuilder<List<Liste>>(
-      stream: NoSqlList().getAllByGroup(group),
+      stream: NoSqlList().getAllByGroup(widget.group),
       builder: (context, snap) {
         if (snap.connectionState == ConnectionState.waiting) {
           return Text('Loading...');
@@ -29,7 +35,7 @@ class CompleteListContainer extends StatelessWidget {
           return Text("No list here yet!");
         }
 
-        return Expanded( 
+        return Expanded(
           child: ListView.builder(
             shrinkWrap: true,
             itemCount: snap.data?.length,
@@ -48,24 +54,20 @@ class CompleteListContainer extends StatelessWidget {
                         style: listTitleStyle,
                       ),
                       IconButton(
-                        onPressed: () async {
-                          await showDialog(
-                            context: context, 
-                            builder: (BuildContext context) {
-                              return DeleteConfirmationDialog(
-                                deleteThing: 'all completed task', 
-                                deleteConfirmation: () {
-                                  NoSqlList().deleteAllCompleteTask(list);
-                                  Navigator.pop(context);
-                                }
-                              );
-                            }
-                          );                          
-                        }, 
-                        icon: Icon(
-                          Icons.delete_forever
-                        )
-                      ),
+                          onPressed: () async {
+                            await showDialog(
+                                context: context,
+                                builder: (BuildContext context) {
+                                  return DeleteConfirmationDialog(
+                                      deleteThing: 'all completed task',
+                                      deleteConfirmation: () {
+                                        NoSqlList()
+                                            .deleteAllCompleteTask(list);
+                                        Navigator.pop(context);
+                                      });
+                                });
+                          },
+                          icon: Icon(Icons.delete_forever)),
                     ],
                   ),
                   CompleteSlidableTask(list: list),
@@ -80,4 +82,7 @@ class CompleteListContainer extends StatelessWidget {
       }
     );
   }
+
+  @override
+  bool get wantKeepAlive => true;
 }
