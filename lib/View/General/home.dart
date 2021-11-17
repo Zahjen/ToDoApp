@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:my_agenda/Models/Style/theme.dart';
-import 'package:my_agenda/Models/Widgets/structurePage.dart';
-import 'package:my_agenda/View/Group/addGroup.dart';
-import 'package:my_agenda/View/Group/slidableGroup.dart';
+import '../../Models/Style/theme.dart';
+import '../../Models/Widgets/structurePage.dart';
+import '../../View/Group/addGroup.dart';
+import '../../View/Group/slidableGroup.dart';
 
 class Home extends StatelessWidget {
   @override
@@ -13,7 +13,7 @@ class Home extends StatelessWidget {
       home: StructurePage(
         children: [
           AddGroup(),
-          SizedBox(           
+          SizedBox(
             height: 20.0,
           ),
           SlidableGroup()
