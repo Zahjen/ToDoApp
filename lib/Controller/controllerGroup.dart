@@ -1,7 +1,7 @@
 import 'package:flutter/widgets.dart';
 import 'package:flutter_slidable/flutter_slidable.dart';
-import 'package:my_agenda/Models/Database/noSqlGroup.dart';
-import 'package:my_agenda/Models/Pojo/group.dart';
+import '../Models/Database/noSqlGroup.dart';
+import '../Models/Pojo/group.dart';
 
 TextEditingController inputGroupTitle = new TextEditingController();
 
@@ -34,5 +34,3 @@ void initializeAddGroup() {
 void initializeEditGroup(Group group) {
   inputGroupTitle.text = group.getTitle();
 }
-
-
